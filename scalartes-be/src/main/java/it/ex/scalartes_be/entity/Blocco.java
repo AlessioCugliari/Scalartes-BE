@@ -16,8 +16,12 @@ public class Blocco {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "muro_id")
+    private Muro muro;
     private String colore;
     private Grado grado;
+    @ManyToOne
     private Utente tracciatore;
     private List<String> note;
     //private Foto foto;
