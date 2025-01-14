@@ -1,6 +1,7 @@
 package it.ex.scalartes_be.entity;
 
 
+import it.ex.scalartes_be.enums.Grado;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class Via {
     private Long id;
 
     private String colore;
-    //private grado; todo enums
+    private Grado grado;
     private Utente tracciatore;
     private List<String> note;
     //private foto foto; todo
