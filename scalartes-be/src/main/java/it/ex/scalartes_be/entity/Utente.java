@@ -20,7 +20,7 @@ public class Utente {
     private String nome;
     private String cognome;
 
-    @OneToMany
+    //@OneToMany
     private String Ruolo;
 
     //TODO LISTA CIRCUITI TRACCIATI E VIE TRACCIATE
