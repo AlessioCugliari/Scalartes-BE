@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -20,9 +22,17 @@ public class Utente {
     private String nome;
     private String cognome;
 
+
     //@OneToMany
     private String Ruolo;
 
     //TODO LISTA CIRCUITI TRACCIATI E VIE TRACCIATE
+    @OneToMany
+    @JoinColumn(name = "via_id")
+    private List<Via> listVie;
+
+    @OneToMany
+    @JoinColumn(name = "blocco_id")
+    private List<Blocco> listBlocchi;
 
 }

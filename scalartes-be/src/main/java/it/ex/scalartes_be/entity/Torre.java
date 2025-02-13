@@ -17,6 +17,6 @@ public class Torre {
     private Long id;
 
     @OneToMany
-    private List<Linea> linee;
+    private List<Parete> linee;
 
 }

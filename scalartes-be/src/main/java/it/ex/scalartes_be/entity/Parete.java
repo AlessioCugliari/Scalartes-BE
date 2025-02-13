@@ -2,21 +2,19 @@ package it.ex.scalartes_be.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "LINEA")
-public class Linea {
+public class Parete {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToMany
-    private List<Via> vie;
+    private List<Via> listVie;
 }
