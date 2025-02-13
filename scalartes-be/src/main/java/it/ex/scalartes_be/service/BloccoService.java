@@ -32,14 +32,34 @@ public class BloccoService {
     public Blocco addBlocco(BloccoDTO bloccoDTO) {
         Blocco bloccoToAdd = new Blocco();
 
+        bloccoToAdd.setGrado(bloccoDTO.getGrado());
+        bloccoToAdd.setMuro(bloccoDTO.getMuro());
+        bloccoToAdd.setTracciatore(bloccoDTO.getTracciatore());
         bloccoToAdd.setColore(bloccoDTO.getColore());
+        bloccoToAdd.setDataTracciatura(bloccoDTO.getDataTracciatura());
+
+        bloccoRepository.save(bloccoToAdd);
 
         return bloccoToAdd;
     }
 
-    //TODO
-    public Blocco editBlocco(BloccoDTO bloccoDTO) {
-        return null;
+    public Blocco editBlocco(Long id, BloccoDTO bloccoDTO) throws NotFoundElementException {
+
+        Blocco BloccoFound = bloccoRepository.findById(id).orElse(null);
+        if(BloccoFound == null){
+            throw new NotFoundElementException("Blocco con id: " + id + " non presente in DB");
+        }
+
+        BloccoFound.setGrado(bloccoDTO.getGrado());
+        BloccoFound.setMuro(bloccoDTO.getMuro());
+        BloccoFound.setTracciatore(bloccoDTO.getTracciatore());
+        BloccoFound.setColore(bloccoDTO.getColore());
+        BloccoFound.setDataTracciatura(bloccoDTO.getDataTracciatura());
+
+        bloccoRepository.save(BloccoFound);
+
+        return BloccoFound;
+
     }
 
     public void deleteBloccoById(Long id) {
