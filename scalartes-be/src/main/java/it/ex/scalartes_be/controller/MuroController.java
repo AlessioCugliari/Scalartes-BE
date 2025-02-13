@@ -17,7 +17,7 @@ public class MuroController {
     }
 
     @GetMapping("/{id}")
-    public Muro getMuroById(@RequestParam Long id){
+    public Muro getMuroById(@PathVariable Long id){
         return muroService.getMuroById(id);
     }
 
