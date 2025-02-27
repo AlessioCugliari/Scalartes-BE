@@ -4,8 +4,8 @@ import it.ex.scalartes_be.dto.BloccoDTO;
 import it.ex.scalartes_be.entity.Blocco;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.service.BloccoService;
-import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,13 +25,15 @@ public class BloccoController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public Blocco addBlocco(@RequestBody BloccoDTO bloccoDTO){
         return bloccoService.addBlocco(bloccoDTO);
     }
 
-    @PutMapping("/edit")
-    public Blocco editBlocco(@RequestBody BloccoDTO bloccoDTO){
-        return bloccoService.editBlocco(bloccoDTO);
+    @PutMapping("/edit/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Blocco editBlocco(@PathVariable Long id, @RequestBody BloccoDTO bloccoDTO) throws NotFoundElementException {
+        return bloccoService.editBlocco(id,bloccoDTO);
     }
 
     @DeleteMapping("/{id}")
