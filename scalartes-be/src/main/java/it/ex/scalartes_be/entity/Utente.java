@@ -1,5 +1,6 @@
 package it.ex.scalartes_be.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,10 @@ public class Utente {
     private String nome;
     private String cognome;
 
-    //@OneToMany
-    private String Ruolo;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "ruolo_id", nullable = false)
+    private Ruolo ruolo;
 
     //TODO LISTA CIRCUITI TRACCIATI E VIE TRACCIATE
 
