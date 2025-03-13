@@ -1,10 +1,14 @@
 package it.ex.scalartes_be.service;
 
 import it.ex.scalartes_be.entity.Fungo;
+import it.ex.scalartes_be.entity.Muro;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.FungoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FungoService {
@@ -27,6 +31,14 @@ public class FungoService {
         return fungoToFind;
     }
 
+    public List<Muro> getListMuri() {
+
+        return fungoRepository.findAll()
+                .stream()
+                .flatMap(fungo -> fungo.getListaMuri().stream())
+                .collect(Collectors.toList());
+    }
+
     public Fungo addFungo() {
 
         Fungo fungoToAdd = new Fungo();
@@ -39,4 +51,6 @@ public class FungoService {
     public void deleteFungoById(Long id) {
         fungoRepository.deleteById(id);
     }
+
+
 }
