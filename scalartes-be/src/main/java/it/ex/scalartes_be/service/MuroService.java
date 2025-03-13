@@ -20,7 +20,18 @@ public class MuroService {
         return muroRepository.getById(id);
     }
 
+    public Muro addMuro() {
+
+        Muro muroToAdd = new Muro();
+
+        muroRepository.save(muroToAdd);
+
+        return muroToAdd;
+    }
+
     public void deleteMuroById(Long id) {
         muroRepository.deleteById(id);
     }
+
+
 }

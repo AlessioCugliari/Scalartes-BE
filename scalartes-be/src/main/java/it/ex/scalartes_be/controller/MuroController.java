@@ -21,6 +21,11 @@ public class MuroController {
         return muroService.getMuroById(id);
     }
 
+    @PostMapping("/add")
+    public Muro addMuro(){
+        return muroService.addMuro();
+    }
+
     @DeleteMapping("/delete/")
     public void deleteMuroById(@RequestParam("muroId") Long id){
         muroService.deleteMuroById(id);
