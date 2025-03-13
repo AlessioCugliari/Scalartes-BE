@@ -5,6 +5,7 @@ import it.ex.scalartes_be.dto.BloccoDTO;
 import it.ex.scalartes_be.entity.Blocco;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.BloccoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class BloccoService {
         return bloccoToFind;
     }
 
+    @Transactional
     public Blocco addBlocco(BloccoDTO bloccoDTO) {
         Blocco bloccoToAdd = new Blocco();
 
@@ -43,6 +45,7 @@ public class BloccoService {
         return bloccoToAdd;
     }
 
+    @Transactional
     public Blocco editBlocco(Long id, BloccoDTO bloccoDTO) throws NotFoundElementException {
 
         Blocco bloccoFound = bloccoRepository.findById(id).orElse(null);

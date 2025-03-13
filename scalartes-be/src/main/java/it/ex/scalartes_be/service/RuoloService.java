@@ -4,6 +4,7 @@ import it.ex.scalartes_be.dto.RuoloDTO;
 import it.ex.scalartes_be.entity.Ruolo;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.RuoloRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class RuoloService {
         return ruoloFound;
     }
 
+    @Transactional
     public Ruolo addRuolo(RuoloDTO ruoloDTO) {
 
         Ruolo ruoloToAdd = new Ruolo();
@@ -39,6 +41,7 @@ public class RuoloService {
         return ruoloToAdd;
     }
 
+    @Transactional
     public Ruolo editRuolo(Long id, RuoloDTO ruoloDTO) throws NotFoundElementException {
 
         Ruolo ruoloFound = ruoloRepository.findById(id).orElse(null);
