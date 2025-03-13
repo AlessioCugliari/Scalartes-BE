@@ -1,27 +1,22 @@
-package it.ex.scalartes_be.entity;
+package it.ex.scalartes_be.dto;
 
+import it.ex.scalartes_be.entity.Muro;
+import it.ex.scalartes_be.entity.Utente;
 import it.ex.scalartes_be.enums.Grado;
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Data
-@Table(name = "BLOCCO")
-public class Blocco {
+@Getter
+@Setter
+public class BloccoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "muro_id")
     private Muro muro;
     private String colore;
     private Grado grado;
-    @ManyToOne
     private Utente tracciatore;
     private List<String> note;
     //private Foto foto;
