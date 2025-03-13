@@ -29,8 +29,14 @@ public class Utente {
     @JoinColumn(name = "ruolo_id", nullable = false)
     private Ruolo ruolo;
 
-
     //TODO LISTA CIRCUITI TRACCIATI E VIE TRACCIATE
+    @OneToMany
+    @JoinColumn(name = "via_id")
+    private List<Via> listVie;
+
+    @OneToMany
+    @JoinColumn(name = "blocco_id")
+    private List<Blocco> listBlocchi;
 
     @OneToMany(mappedBy = "tracciatore", cascade = CascadeType.ALL)
     @JsonManagedReference
