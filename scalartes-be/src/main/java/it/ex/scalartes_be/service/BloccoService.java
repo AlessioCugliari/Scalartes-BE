@@ -5,6 +5,7 @@ import it.ex.scalartes_be.dto.BloccoDTO;
 import it.ex.scalartes_be.entity.Blocco;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.BloccoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class BloccoService {
         return bloccoToFind;
     }
 
+    @Transactional
     public Blocco addBlocco(BloccoDTO bloccoDTO) {
         Blocco bloccoToAdd = new Blocco();
 
@@ -43,22 +45,23 @@ public class BloccoService {
         return bloccoToAdd;
     }
 
+    @Transactional
     public Blocco editBlocco(Long id, BloccoDTO bloccoDTO) throws NotFoundElementException {
 
-        Blocco BloccoFound = bloccoRepository.findById(id).orElse(null);
-        if(BloccoFound == null){
+        Blocco bloccoFound = bloccoRepository.findById(id).orElse(null);
+        if(bloccoFound == null){
             throw new NotFoundElementException("Blocco con id: " + id + " non presente in DB");
         }
 
-        BloccoFound.setGrado(bloccoDTO.getGrado());
-        BloccoFound.setMuro(bloccoDTO.getMuro());
-        BloccoFound.setTracciatore(bloccoDTO.getTracciatore());
-        BloccoFound.setColore(bloccoDTO.getColore());
-        BloccoFound.setDataTracciatura(bloccoDTO.getDataTracciatura());
+        bloccoFound.setGrado(bloccoDTO.getGrado());
+        bloccoFound.setMuro(bloccoDTO.getMuro());
+        bloccoFound.setTracciatore(bloccoDTO.getTracciatore());
+        bloccoFound.setColore(bloccoDTO.getColore());
+        bloccoFound.setDataTracciatura(bloccoDTO.getDataTracciatura());
 
-        bloccoRepository.save(BloccoFound);
+        bloccoRepository.save(bloccoFound);
 
-        return BloccoFound;
+        return bloccoFound;
 
     }
 
