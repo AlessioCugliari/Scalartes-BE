@@ -6,6 +6,7 @@ import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.ViaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class ViaService {
         return viaRepository.findAll();
     }
 
+    @Transactional
     public Via addVia(ViaDTO viaDTO) {
         Via viaToAdd = new Via();
 
@@ -47,6 +49,7 @@ public class ViaService {
         return viaToAdd;
     }
 
+    @Transactional
     public Via editVia(Long id, ViaDTO viaDTO) throws NotFoundElementException {
         Via viaFound = viaRepository.findById(id).orElse(null);
         if(viaFound == null){
@@ -65,6 +68,7 @@ public class ViaService {
 
     }
 
+    @Transactional
     public void deleteViaById(long id){
         viaRepository.deleteById(id);
     }

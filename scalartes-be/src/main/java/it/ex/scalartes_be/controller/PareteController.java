@@ -1,6 +1,7 @@
 package it.ex.scalartes_be.controller;
 
 import it.ex.scalartes_be.entity.Parete;
+import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.service.PareteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class PareteController {
     }
 
     @GetMapping("/{id}")
-    public Parete getPareteById(@PathVariable Long id) {
+    public Parete getPareteById(@PathVariable Long id) throws NotFoundElementException {
         return pareteService.getPareteById(id);
     }
 

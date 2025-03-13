@@ -5,6 +5,7 @@ import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.TorreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class TorreService {
         return torreRepository.findAll();
     }
 
+    @Transactional
     public Torre addTorre() {
         Torre torreToAdd = new Torre();
 
@@ -40,6 +42,7 @@ public class TorreService {
         return torreToAdd;
     }
 
+    @Transactional
     public void deleteTorreById(long id) {
         torreRepository.deleteById(id);
     }
