@@ -1,6 +1,5 @@
 package it.ex.scalartes_be.service;
 
-import it.ex.scalartes_be.dto.RuoloDTO;
 import it.ex.scalartes_be.dto.UtenteDTO;
 import it.ex.scalartes_be.entity.Ruolo;
 import it.ex.scalartes_be.entity.Utente;
@@ -44,7 +43,6 @@ public class UtenteService {
         utenteToAdd.setUserName(utenteDTO.getUserName());
 
         Ruolo ruolo = ruoloRepository.findByNomeRuolo(utenteDTO.getRuolo());
-        System.out.println("RUOLO " + ruolo.getNomeRuolo());
         utenteToAdd.setRuolo(ruolo);
 
         utenteRepository.save(utenteToAdd);
@@ -52,6 +50,7 @@ public class UtenteService {
         return utenteToAdd;
     }
 
+    @Transactional
     public Utente editUtente(Long id, UtenteDTO utenteDTO) throws NotFoundElementException {
 
         Utente utenteFound = utenteRepository.findById(id).orElse(null);
