@@ -1,5 +1,7 @@
 package it.ex.scalartes_be.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.ex.scalartes_be.enums.Grado;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,6 +24,9 @@ public class Blocco {
     private String colore;
     private Grado grado;
     @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "utente_id", nullable = false)
+    @JsonIgnore
     private Utente tracciatore;
     private List<String> note;
     //private Foto foto;

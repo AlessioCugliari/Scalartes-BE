@@ -14,10 +14,10 @@ import java.util.List;
 @Setter
 public class BloccoDTO {
 
-    private Muro muro;
+    private Long muro;
     private String colore;
-    private Grado grado;
-    private Utente tracciatore;
+    private String grado;
+    private String tracciatore;
     private List<String> note;
     //private Foto foto;
     private LocalDate dataTracciatura;
