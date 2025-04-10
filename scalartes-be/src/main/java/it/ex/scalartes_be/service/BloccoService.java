@@ -43,7 +43,7 @@ public class BloccoService {
     public Blocco addBlocco(BloccoDTO bloccoDTO) {
         Blocco bloccoToAdd = new Blocco();
 
-        Grado grado = Grado.valueOf(bloccoDTO.getGrado());
+        Grado grado = Grado.fromString(bloccoDTO.getGrado());
         bloccoToAdd.setGrado(grado);
 
         Muro muro = muroRepository.findById(bloccoDTO.getMuro()).orElse(null);
@@ -68,7 +68,7 @@ public class BloccoService {
             throw new NotFoundElementException("Blocco con id: " + id + " non presente in DB");
         }
 
-        Grado grado = Grado.valueOf(bloccoDTO.getGrado());
+        Grado grado = Grado.fromString(bloccoDTO.getGrado());
         bloccoFound.setGrado(grado);
 
         Muro muro = muroRepository.findById(bloccoDTO.getMuro()).orElse(null);
