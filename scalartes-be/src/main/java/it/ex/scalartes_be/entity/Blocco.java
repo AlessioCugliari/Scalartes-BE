@@ -19,6 +19,7 @@ public class Blocco {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "muro_id")
     private Muro muro;
     private String colore;

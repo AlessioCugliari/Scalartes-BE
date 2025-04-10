@@ -1,5 +1,6 @@
 package it.ex.scalartes_be.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class Muro {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "muro")
+    @JsonManagedReference
     private List<Blocco> listBlocchi;
 }
