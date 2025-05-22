@@ -37,7 +37,7 @@ public class BloccoController {
     @PutMapping("/edit/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Blocco editBlocco(@PathVariable Long id, @RequestBody BloccoDTO bloccoDTO) throws NotFoundElementException {
-        log.info("Request put /blocco/edit with id and doby: {}", id, bloccoDTO);
+        log.info("Request put /blocco/edit with id and doby: {} {}", id, bloccoDTO);
         return bloccoService.editBlocco(id,bloccoDTO);
     }
 

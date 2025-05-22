@@ -27,7 +27,7 @@ public class MuroController {
 
     @PostMapping("/add")
     public Muro addMuro(){
-        log.info("Request POST muro/add/ {}");
+        log.info("Request POST muro/add/");
         return muroService.addMuro();
     }
 
