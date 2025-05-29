@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/torre")
 public class TorreController {
@@ -23,6 +25,11 @@ public class TorreController {
     @GetMapping("/{id}")
     public Torre getTorreById(@PathVariable Long id) throws NotFoundElementException {
         return torreService.getTorreById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Torre> getTorri() throws NotFoundElementException{
+        return torreService.getAll();
     }
 
     @PostMapping("/add")
