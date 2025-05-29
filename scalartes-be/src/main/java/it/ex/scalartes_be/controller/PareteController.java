@@ -36,8 +36,8 @@ public class PareteController {
         return pareteService.addParete();
     }
 
-    @DeleteMapping("/delete/")
-    public void deletePareteById(@RequestParam("pareteid") Long id) {
+    @DeleteMapping("/{id}")
+    public void deletePareteById(@PathVariable Long id) {
         pareteService.deletePareteById(id);
     }
 }
