@@ -7,10 +7,12 @@ import it.ex.scalartes_be.exceptions.NotFoundElementException;
 import it.ex.scalartes_be.repository.RuoloRepository;
 import it.ex.scalartes_be.repository.UtenteRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class UtenteService {
 
     private final UtenteRepository utenteRepository;
@@ -23,16 +25,23 @@ public class UtenteService {
     }
 
     public Utente getUtenteById(Long id) throws NotFoundElementException {
+
+        log.info("Ricerca del utente con id={}", id);
+        
         Utente utenteFound = utenteRepository.findById(id).orElse(null);
 
         if(utenteFound == null){
             throw new NotFoundElementException("Utente con id: " + id + " non presente in DB");
         }
+
+        log.debug("utente trovato: {}", utenteFound);
         return utenteFound;
     }
 
     @Transactional
     public Utente addUtente(UtenteDTO utenteDTO) {
+
+        log.info("Aggiunta di un nuovo utente: {}", utenteDTO);
 
         Utente utenteToAdd = new Utente();
 
@@ -47,11 +56,15 @@ public class UtenteService {
 
         utenteRepository.save(utenteToAdd);
 
+        log.info("utente aggiunto con successo: {}", utenteToAdd);
+
         return utenteToAdd;
     }
 
     @Transactional
     public Utente editUtente(Long id, UtenteDTO utenteDTO) throws NotFoundElementException {
+
+        log.info("Edit del utente con id={}: nuovi dati {}", id, utenteDTO);
 
         Utente utenteFound = utenteRepository.findById(id).orElse(null);
 
@@ -67,10 +80,14 @@ public class UtenteService {
 
         utenteRepository.save(utenteFound);
 
+        log.info("utente modificato con successo: {}", utenteFound);
+        
         return utenteFound;
     }
 
     public void deleteUtenteById(Long id) {
+        log.info("Delete del utente con id={}", id);
         utenteRepository.deleteById(id);
+        log.info("utente eliminato con id={}", id);
     }
 }
