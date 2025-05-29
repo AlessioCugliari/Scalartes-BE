@@ -1,8 +1,14 @@
 package it.ex.scalartes_be.service;
 
 import it.ex.scalartes_be.dto.ViaDTO;
+import it.ex.scalartes_be.entity.Muro;
+import it.ex.scalartes_be.entity.Parete;
+import it.ex.scalartes_be.entity.Utente;
 import it.ex.scalartes_be.entity.Via;
+import it.ex.scalartes_be.enums.Grado;
 import it.ex.scalartes_be.exceptions.NotFoundElementException;
+import it.ex.scalartes_be.repository.PareteRepository;
+import it.ex.scalartes_be.repository.UtenteRepository;
 import it.ex.scalartes_be.repository.ViaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +20,8 @@ import java.util.List;
 public class ViaService {
 
     private ViaRepository viaRepository;
+    private PareteRepository pareteRepository;
+    private UtenteRepository utenteRepository;
 
     @Autowired
     public ViaService(ViaRepository viaRepository) {
@@ -38,9 +46,15 @@ public class ViaService {
     public Via addVia(ViaDTO viaDTO) {
         Via viaToAdd = new Via();
 
-        viaToAdd.setGrado(viaDTO.getGrado());
-        viaToAdd.setParete(viaDTO.getParete());
-        viaToAdd.setTracciatore(viaDTO.getTracciatore());
+        Grado grado = Grado.fromString(viaDTO.getGrado());
+        viaToAdd.setGrado(grado);
+
+        Parete parete = pareteRepository.findById(viaDTO.getParete()).orElse(null);
+        viaToAdd.setParete(parete);
+
+        Utente tracciatore = utenteRepository.findByEmail(viaDTO.getTracciatore());
+        viaToAdd.setTracciatore(tracciatore);
+
         viaToAdd.setColore(viaDTO.getColore());
         viaToAdd.setDataTracciamento(viaDTO.getDataTracciamento());
 
@@ -56,11 +70,19 @@ public class ViaService {
             throw new NotFoundElementException("Via con id: " + id + " non presente in DB");
         }
 
-        viaFound.setGrado(viaDTO.getGrado());
-        viaFound.setParete(viaDTO.getParete());
-        viaFound.setTracciatore(viaDTO.getTracciatore());
+        Grado grado = Grado.fromString(viaDTO.getGrado());
+        viaFound.setGrado(grado);
+
+        Parete parete = pareteRepository.findById(viaDTO.getParete()).orElse(null);
+        viaFound.setParete(parete);
+
+        Utente tracciatore = utenteRepository.findByEmail(viaDTO.getTracciatore());
+        viaFound.setTracciatore(tracciatore);
+
         viaFound.setColore(viaDTO.getColore());
         viaFound.setDataTracciamento(viaDTO.getDataTracciamento());
+
+        viaRepository.save(viaFound);
 
         viaRepository.save(viaFound);
 

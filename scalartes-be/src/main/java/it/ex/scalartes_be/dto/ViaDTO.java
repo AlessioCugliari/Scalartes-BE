@@ -13,10 +13,10 @@ import java.util.List;
 @Setter
 public class ViaDTO {
 
-    private Parete parete;
+    private Long parete;
     private String colore;
-    private Grado grado;
-    private Utente tracciatore;
+    private String grado;
+    private String tracciatore;
     private List<String> note;
     //private Foto foto;
     private LocalDate dataTracciamento;
