@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/via")
 public class ViaController {
@@ -22,6 +24,11 @@ public class ViaController {
     @GetMapping("/{id}")
     public Via getViaById(@PathVariable Long id) throws NotFoundElementException {
         return viaService.getViaById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Via> getVie() throws NotFoundElementException {
+        return viaService.getAll();
     }
 
     @PostMapping("/add")
