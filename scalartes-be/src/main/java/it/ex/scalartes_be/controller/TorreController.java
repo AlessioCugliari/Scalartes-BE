@@ -38,8 +38,8 @@ public class TorreController {
         return torreService.addTorre();
     }
 
-    @DeleteMapping("/delete/")
-    public void deleteTorreById(@RequestParam("muroid") Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteTorreById(@PathVariable Long id) {
         torreService.deleteTorreById(id);
     }
 }
