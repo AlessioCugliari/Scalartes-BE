@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/parete")
 public class PareteController {
@@ -21,6 +23,11 @@ public class PareteController {
     @GetMapping("/{id}")
     public Parete getPareteById(@PathVariable Long id) throws NotFoundElementException {
         return pareteService.getPareteById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Parete> getPareti() throws NotFoundElementException{
+        return pareteService.getAll();
     }
 
     @PostMapping("/add")
