@@ -1,7 +1,6 @@
 package it.ex.scalartes_be.service;
 
 import it.ex.scalartes_be.dto.ViaDTO;
-import it.ex.scalartes_be.entity.Muro;
 import it.ex.scalartes_be.entity.Parete;
 import it.ex.scalartes_be.entity.Utente;
 import it.ex.scalartes_be.entity.Via;

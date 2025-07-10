@@ -25,7 +25,7 @@ public class Via {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "patere_id")
+    @JoinColumn(name = "parete_id")
 
     private Parete parete;
 
