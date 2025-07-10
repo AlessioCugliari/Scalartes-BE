@@ -56,6 +56,7 @@ public class ViaService {
         Utente tracciatore = utenteRepository.findByEmail(viaDTO.getTracciatore());
         viaToAdd.setTracciatore(tracciatore);
 
+        viaToAdd.setNote(viaDTO.getNote());
         viaToAdd.setColore(viaDTO.getColore());
         viaToAdd.setDataTracciamento(viaDTO.getDataTracciamento());
 
