@@ -56,6 +56,7 @@ public class BloccoService {
         Utente tracciatore = utenteRepository.findByEmail(bloccoDTO.getTracciatore());
         bloccoToAdd.setTracciatore(tracciatore);
 
+        bloccoToAdd.setNote(bloccoDTO.getNote());
         bloccoToAdd.setColore(bloccoDTO.getColore());
         bloccoToAdd.setDataTracciatura(bloccoDTO.getDataTracciatura());
 
@@ -82,6 +83,7 @@ public class BloccoService {
         Utente tracciatore = utenteRepository.findByEmail(bloccoDTO.getTracciatore());
         bloccoFound.setTracciatore(tracciatore);
 
+        bloccoFound.setNote(bloccoDTO.getNote());
         bloccoFound.setColore(bloccoDTO.getColore());
         bloccoFound.setDataTracciatura(bloccoDTO.getDataTracciatura());
 
