@@ -24,8 +24,10 @@ public class ViaService {
     private UtenteRepository utenteRepository;
 
     @Autowired
-    public ViaService(ViaRepository viaRepository) {
+    public ViaService(ViaRepository viaRepository, PareteRepository pareteRepository, UtenteRepository utenteRepository) {
         this.viaRepository = viaRepository;
+        this.pareteRepository = pareteRepository;
+        this.utenteRepository = utenteRepository;
     }
 
     public Via getViaById(long id) throws NotFoundElementException {
